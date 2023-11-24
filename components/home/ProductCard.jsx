@@ -69,7 +69,7 @@ const ProductCard = ({ item }) => {
                 {" "}
                 {item.newPrice}
               </p>
-              <p className="text-sm text-gray ml-3  ff_lato ">
+              <p className="text-sm text-gray ml-4  ff_lato ">
                 {" "}
                 <del>{item.newPrice}</del>
               </p>
