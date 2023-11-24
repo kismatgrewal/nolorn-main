@@ -1,0 +1,63 @@
+import Image from "next/image";
+import React from "react";
+import CategoryCatalog from "../catalog/CategoryCatalog";
+import ShopNowBtn from "../common/ShopNowBtn";
+import { latestpostsdata, topSellingsdata } from "../helper/Helper";
+import { LeftArrowIcon } from "../helper/Svg";
+import ProductItem from "../home/ProductItem";
+import LatestPosts from "./LatestPosts";
+
+const BlogNewsSidebar = ({ isSidebarOpen, setSidebarOpen }) => {
+  return (
+    <>
+      {isSidebarOpen && (
+        <div
+          onClick={() => setSidebarOpen((pre) => !pre)}
+          className="z-10 fixed left-0 w-full h-full bg-black opacity-10 top-0 50 transition-all duration-300 ease-in"
+        ></div>
+      )}
+      <aside
+        className={`p-3 lg:p-0 fixed lg:static min-w-[270px] w-[270px] h-full lg:h-fit max-h-full overflow-auto z-[101]  transition-all duration-200 ease-in ${
+          isSidebarOpen ? "left-0 top-0  bg-white" : "-left-[270px]"
+        }`}
+      >
+        <CategoryCatalog />
+
+        <div className="flex items-center justify-between border-b  border-gray mt-6 mb-4 pb-3">
+          <h4 className="text-lightblack font-bold text-md">Latest products</h4>
+          <LeftArrowIcon />
+        </div>
+        {latestpostsdata.map((item, index) => (
+          <LatestPosts item={item} key={index} />
+        ))}
+        <div className="flex items-center justify-between border-b  border-gray mt-6 mb-4 pb-3">
+          <h4 className="text-lightblack font-bold text-md">New products</h4>
+          <LeftArrowIcon />
+        </div>
+        {topSellingsdata.map((item, index) => (
+          <ProductItem item={item} key={index} />
+        ))}
+
+        <div className="skyblue-gradient rounded-lg p-5  mt-10 h-[300px] relative">
+          <div className="z-10 relative">
+            <h2 className="font-bold text-lg  text-lightblack max-w-[180px] sm:max-w-[238px] leading-10 mb-6">
+              Get a <br /> <span className="text-[#F59758]">Discount 30%</span>
+            </h2>
+            <ShopNowBtn />
+          </div>
+
+          <div className="absolute bottom-0 right-0 max-w-[170px] z-0">
+            <Image
+              src="/assets/images/apple-2.png"
+              alt="New product"
+              width={370}
+              height={438}
+            />
+          </div>
+        </div>
+      </aside>
+    </>
+  );
+};
+
+export default BlogNewsSidebar;
